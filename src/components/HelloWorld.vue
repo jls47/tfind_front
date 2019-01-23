@@ -81,11 +81,13 @@
       </li>
     </ul>
     <tourneys></tourneys>
+    <create></create>
   </div>
 </template>
 
 <script>
 import Tournaments from '@/components/Tournaments';
+import CreateTournament from '@/components/CreateTournament';
 export default {
   name: 'HelloWorld',
   data () {
@@ -94,13 +96,14 @@ export default {
     }
   },
   components:{
-    tourneys: Tournaments
+    tourneys: Tournaments,
+    create: CreateTournament
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang = "scss" scoped>
 h1, h2 {
   font-weight: normal;
 }
