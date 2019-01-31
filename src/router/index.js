@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import CreateTournament from '@/components/CreateTournament'
 import Tournaments from '@/components/Tournaments'
 import singleT from '@/components/singleT'
+import register from '@/components/register'
+import activate from '@/components/activate'
 
 Vue.use(Router)
 
@@ -28,6 +30,16 @@ export default new Router({
       path: '/singlet/:id',
       name: 'singleT',
       component: singleT
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/activate/:hash',
+      name: 'activate',
+      component: activate
     }
   ]
 })
