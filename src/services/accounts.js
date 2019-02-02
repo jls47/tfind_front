@@ -28,6 +28,29 @@ class accounts{
       })
   }
 
+  static login (form){
+    console.log(form.name);
+    return axios.get(`https://tfind-back.herokuapp.com/api/users`, {
+      params: {
+        name: form.name,
+        password: form.password
+      }
+    })
+  //  return axios.get(`http://localhost:3000/login`, {
+    //  params: {
+      //  name: form.name,
+      //  password: form.password
+      //}
+    //})
+      .then(response => {
+        console.log(response);
+        return response;
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
+
 
 }
 

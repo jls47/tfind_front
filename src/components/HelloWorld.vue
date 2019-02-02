@@ -22,6 +22,7 @@
     <h1>{{ msg }}</h1>
     <tourneys></tourneys>
     <register></register>
+    <login></login>
   </div>
 
 </div>
@@ -31,6 +32,7 @@
 import { serverBus } from '../main';
 import Tournaments from '@/components/Tournaments';
 import register from '@/components/register';
+import login from '@/components/login';
 export default {
   name: 'HelloWorld',
   data () {
@@ -45,7 +47,8 @@ export default {
   },
   components:{
     tourneys: Tournaments,
-    register: register
+    register: register,
+    login: login
   }
 }
 </script>
