@@ -13,32 +13,56 @@ Vue.use(Vuex)
 
 //actions call mutations which update state
 //getters grab data from state
+
 const store = new Vuex.Store({
+	//modules: {
+	//	login: loginModule,
+	//	search: searchModule
+	//}
 	state: {
-		searchingStatus: 'notsearching'
+		searching: false,
+		loggedIn: false
 	},
 	mutations: {
 		SET_SEARCHING_STATUS(state, status){
 			state.searchingStatus = status
+		},
+		SET_LOGIN_STATUS(state, status){
+			state.loggedIn = status
 		}
 	},
 	actions: {
 		search(context){
-			context.commit('SET_SEARCHING_STATUS', 'searching')
+			context.commit('SET_SEARCHING_STATUS', true)
+		},
+		unSearch(context){
+			context.commit('SET_SEARCHING_STATUS', false)
+		},
+		login(context){
+			context.commit('SET_LOGIN_STATUS', true)
+		},
+		logout(context){
+			context.commit('SET_LOGIN_STATUS', false)
 		}
 	},
 	getters: {
 		searchStatus(state){
 			return state.searchingStatus;
+		},
+		loginStatus(state){
+			return state.loginStatus;
 		}
 	}
 })
+
+export default store;
 
 export const serverBus = new Vue();
 
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

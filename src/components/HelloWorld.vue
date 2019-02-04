@@ -10,8 +10,13 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-danger is-inverted">Login</a>
-          <a class="button is-danger is-inverted">Sign Up</a>
+          <div v-if="this.loginStatus == false">
+            <login @log="onLogin"></login>
+            <router-link class="button is-danger is-inverted" to="/register">Sign Up</router-link>
+          </div>
+          <div v-else>
+            <button class="button is-danger is-inverted">Sign Out</button>
+          </div>
         </div>
       </div>
     </div>  
@@ -21,8 +26,6 @@
 
     <h1>{{ msg }}</h1>
     <tourneys></tourneys>
-    <register></register>
-    <login></login>
   </div>
 
 </div>
@@ -33,11 +36,15 @@ import { serverBus } from '../main';
 import Tournaments from '@/components/Tournaments';
 import register from '@/components/register';
 import login from '@/components/login';
+import store from '../main.js'
+
+      
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Test your might!'
+      msg: 'Test your might!',
+      loginStatus: ''
     }
   },
   created(){
@@ -49,6 +56,15 @@ export default {
     tourneys: Tournaments,
     register: register,
     login: login
+  },
+  mounted(){
+    console.log(store.state)
+    this.loginStatus = store.state.loggedIn
+  },
+  methods: {
+    onLogin(){
+      this.loginStatus = store.state.loggedIn
+    }
   }
 }
 </script>
