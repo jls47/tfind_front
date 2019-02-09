@@ -11,11 +11,11 @@
       <div class="navbar-item">
         <div class="buttons">
           <div v-if="this.loginStatus == false">
-            <login @log="onLogin"></login>
+            <login @log="onLog"></login>
             <router-link class="button is-danger is-inverted" to="/register">Sign Up</router-link>
           </div>
           <div v-else>
-            <button class="button is-danger is-inverted">Sign Out</button>
+            <logout @out="onLog"></logout>
           </div>
         </div>
       </div>
@@ -23,7 +23,6 @@
   </nav>
 
   <div class="hello">
-
     <h1>{{ msg }}</h1>
     <tourneys></tourneys>
   </div>
@@ -36,6 +35,7 @@ import { serverBus } from '../main';
 import Tournaments from '@/components/Tournaments';
 import register from '@/components/register';
 import login from '@/components/login';
+import logout from '@/components/logout'
 import store from '../main.js'
 
       
@@ -55,14 +55,15 @@ export default {
   components:{
     tourneys: Tournaments,
     register: register,
-    login: login
+    login: login,
+    logout: logout
   },
   mounted(){
     console.log(store.state)
     this.loginStatus = store.state.loggedIn
   },
   methods: {
-    onLogin(){
+    onLog(){
       this.loginStatus = store.state.loggedIn
     }
   }

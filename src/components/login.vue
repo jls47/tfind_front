@@ -14,6 +14,11 @@
           </label><br>
           <button class = "button is-danger" type="submit">Login</button>
         </form>
+        <article v-if="this.error == true" class="message is-danger">
+          <div class="message-body">
+            Username or password are incorrect.  Try again!
+          </div>
+          </article>
         </div>
       </div>
     </div>
@@ -30,6 +35,7 @@ export default {
   data () {
     return {
     isActive: false,
+    error: false,
      params: {
         name: '',
         password: ''
@@ -41,9 +47,16 @@ export default {
   	  if(this.params){
         accounts.login(this.params)
           .then( data => {
-            if(data.status == 200){
-              this.login();
-              this.$emit('log')
+            if(data){
+              console.log(data);
+              if(data.data.status == 'success'){
+                this.login();
+                this.$emit('log')
+              }else{
+                this.error = true;
+              }
+            }else{
+              this.error = true;
             }
           })
       }

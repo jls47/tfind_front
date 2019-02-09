@@ -1,6 +1,6 @@
 # front
 
-> A Vue.js project
+> A Vue.js project that uses express and Postgres as the backend.  This is a trial by fire project where I learn what makes Vue tick and how to make some nice, reactive goodness.
 
 ## Build Setup
 
