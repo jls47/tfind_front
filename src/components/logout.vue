@@ -12,20 +12,12 @@ export default {
   name: 'logout',
   data () {
     return {
-      isActive: false
     }
   },
   methods: {
     logOut(){
   	  this.logout();
       this.$emit('out')
-    },
-    active(){
-      if(this.isActive == false){
-        this.isActive = true;
-      }else{
-        this.isActive = false;
-      }
     },
     ...mapActions([
       'logout'

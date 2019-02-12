@@ -2,19 +2,18 @@
   <div class="tournaments">
   <form @submit.prevent="handleSubmit">
     <label>
-      <input type="text" v-model="search.string"/>
+      <div class="field">
+        <div class="control">
+          <input class = "input" id = "tSearch" type="text" v-model="search.string"/><br><button class = "button is-danger" type="submit" @click="clicked1">Search</button>
+        </div>
+      </div>
     </label>
-    <button type="submit" @click="clicked1">Search</button>
-    <p v-if="search.string">{{search.string.toUpperCase()}}</p>
+    
+    <p v-if="search.string">Searching for "{{search.string}}"</p>
   </form>
-  <form v-if="search.string2">
-    <label>
-      <p>Example passing data back to parent</p>
-      <input type="text" v-model="search.string2"/>
-    </label>
-    <button type="submit" @click="clicked1">Search</button>
-  </form>
+  
     <ul v-if="tournaments.length > 0">
+      <gmap :tourneys="tournaments"></gmap>
       <li v-for="tourney of tournaments">
       	<p><strong>{{tourney.name}}</strong></p>
         <router-link :to="{ name: 'singleT', params: {id: tourney.id}}">See details</router-link>
@@ -27,6 +26,7 @@
 import axios from 'axios';
 import { serverBus } from '../main';
 import tourneys from '@/services/tourneys';
+import gMap from '@/components/gMap';
 export default {
   name: 'tournaments',
   data () {
@@ -38,6 +38,9 @@ export default {
       searchinput: 'Search tournaments',
     	tournaments: []
     }
+  },
+  components: {
+    gmap: gMap
   },
   methods: {
     clicked1(){
@@ -66,4 +69,11 @@ export default {
 	li{
 		list-style-type: none;
 	}
+  #tSearch{
+    width: 60%;
+    margin-left: 0%;
+  }
+  .control{
+    text-align: center;
+  }
 </style>

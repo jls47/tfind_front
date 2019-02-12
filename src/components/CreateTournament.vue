@@ -34,7 +34,10 @@ export default {
         size: '',
         entrycond: '',
         games: [],
-        series: []
+        series: [],
+        lat: 0,
+        lng: 0,
+        formatted: ""
       },
       forminput: 'form tournaments',
     	tournaments: []
@@ -54,9 +57,17 @@ export default {
       }
       console.log(this.form);
   	  if(this.form){
-        tourneys.createTournament(this.form)
-          .then(Ts => {
-            this.tournaments = Ts
+        console.log(this.address);
+        let address = this.form.address.replace(/ /g, "+");
+        tourneys.getCoords(address)
+          .then(data => {
+            this.form.lat = data.coords.lat;
+            this.form.lng = data.coords.lng;
+            this.form.address = data.formatted;
+            tourneys.createTournament(this.form)
+              .then(Ts => {
+                this.tournaments = Ts
+              })
           })
       }
     }

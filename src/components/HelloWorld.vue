@@ -24,7 +24,9 @@
 
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <tourneys></tourneys>
+    <div v-if="">
+      <tourneys></tourneys>
+    </div>
   </div>
 
 </div>
@@ -35,8 +37,8 @@ import { serverBus } from '../main';
 import Tournaments from '@/components/Tournaments';
 import register from '@/components/register';
 import login from '@/components/login';
-import logout from '@/components/logout'
-import store from '../main.js'
+import logout from '@/components/logout';
+import store from '../main.js';
 
       
 export default {
