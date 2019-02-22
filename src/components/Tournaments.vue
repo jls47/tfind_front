@@ -13,7 +13,8 @@
   </form>
   
     <ul v-if="tournaments.length > 0">
-      <gmap :tourneys="tournaments"></gmap>
+      <button v-if="redoMapSearch == true" class="button is-danger" @click="newBoundSearch">Update results</button>
+      <gmap :tourneys="tournaments" @moved="offerUpdateSearch"></gmap>
       <li v-for="tourney of tournaments">
       	<p><strong>{{tourney.name}}</strong></p>
         <router-link :to="{ name: 'singleT', params: {id: tourney.id}}">See details</router-link>
@@ -33,18 +34,46 @@ export default {
     return {
       search: {
         string: '',
-        string2: ''
+        location: ''
       },
       searchinput: 'Search tournaments',
-    	tournaments: []
+    	tournaments: [],
+      filtering: false,
+      redoMapSearch: false,
+      mapMovements: 0,
+      bounds: {
+        SW: {
+          lat: 0,
+          lng: 0
+        },
+        NE: {
+          lat: 0,
+          lng: 0
+        }
+      }
     }
   },
   components: {
     gmap: gMap
   },
   methods: {
+    offerUpdateSearch(data){
+      this.mapMovements += 1;
+      if(this.mapMovements > 1){
+        console.log(data);
+        this.bounds.SW.lat = data.ma.l;
+        this.bounds.SW.lng = data.ga.l;
+        this.bounds.NE.lat = data.ma.j;
+        this.bounds.NE.lng = data.ga.j;
+        this.redoMapSearch = true;
+      }
+    },
     clicked1(){
       serverBus.$emit('clicked', this.search.string2)
+    },
+    newBoundSearch(){
+      console.log(this.bounds);
+      tourneys.getTournamentsByCoordinates(this.bounds);
     },
     handleSubmit(){
       console.log(this.search.string);

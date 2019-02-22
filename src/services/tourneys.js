@@ -72,6 +72,20 @@ class tourneys {
         console.log(e);
       })
   }
+
+  static getTournamentsByCoordinates(coords){
+    return axios.get(`https://tfind-back.herokuapp.com/api/tournaments`, {
+    //return axios.get(`http://localhost:3000/api/tournaments/coords`, {
+      params: coords
+    })
+      .then(response => {
+        this.tournaments = response.data['data'];
+        return this.tournaments;
+      })
+      .catch(e => {
+        console.log(e);
+      })
+  }
 }
 
 
