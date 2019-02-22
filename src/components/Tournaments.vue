@@ -61,10 +61,10 @@ export default {
       this.mapMovements += 1;
       if(this.mapMovements > 1){
         console.log(data);
-        this.bounds.SW.lat = data.ma.l;
-        this.bounds.SW.lng = data.ga.l;
-        this.bounds.NE.lat = data.ma.j;
-        this.bounds.NE.lng = data.ga.j;
+        this.bounds.NE.lat = data.ma.l;
+        this.bounds.NE.lng = data.ga.l;
+        this.bounds.SW.lat = data.ma.j;
+        this.bounds.SW.lng = data.ga.j;
         this.redoMapSearch = true;
       }
     },
@@ -73,7 +73,10 @@ export default {
     },
     newBoundSearch(){
       console.log(this.bounds);
-      tourneys.getTournamentsByCoordinates(this.bounds);
+      tourneys.getTournamentsByCoordinates(this.bounds)
+        .then(Ts => {
+          this.tournaments = Ts
+        })
     },
     handleSubmit(){
       console.log(this.search.string);
