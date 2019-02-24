@@ -31,10 +31,18 @@ export default{
   mounted(){
     this.getFirstCenter();
   },
+  //Use watchers to update values on prop change.
+  watch: {
+    'tourneys': {
+      handler(){
+        console.log(this.tourneys);
+        this.touse = this.tourneys;
+      }
+      
+    }
+  },
   methods: {
-    //use getBounds to pass back to tournaments and filter that way?
-    //How do I track map movement?
-    //Use center_changed and bounds_changed
+    //touse is not changing with results
     getFirstCenter(){
       this.$refs.mapRef.$mapPromise.then((map) => {
         let avgLat = 0.0;

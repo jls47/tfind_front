@@ -42,7 +42,7 @@ export default {
       redoMapSearch: false,
       mapMovements: 0,
       bounds: {
-        SW: {
+        SW : {
           lat: 0,
           lng: 0
         },

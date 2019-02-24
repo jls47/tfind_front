@@ -25,6 +25,15 @@ export default{
 
   	}
   },
+  watch: {
+    'locations': {
+      handler(){
+        console.log(this.tourneys);
+        this.places = this.locations;
+      }
+      
+    }
+  },
   created(){
     this.geocode();
   },
