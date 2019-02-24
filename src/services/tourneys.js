@@ -73,8 +73,10 @@ class tourneys {
       })
   }
 
+  //This is only working locally.  Figure out why.
+
   static getTournamentsByCoordinates(coords){
-    return axios.get(`https://tfind-back.herokuapp.com/api/tournaments`, {
+    return axios.get(`https://tfind-back.herokuapp.com/api/tournaments/coords`, {
     //return axios.get(`http://localhost:3000/api/tournaments/coords`, {
       params: coords
     })
