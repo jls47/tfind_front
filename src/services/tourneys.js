@@ -28,15 +28,15 @@ class tourneys {
   }
   	
   static searchTournament (term) {
-	return axios.get(`https://tfind-back.herokuapp.com/api/tournaments/search/` + term)
-	//return axios.get(`http://localhost:3000/api/tournaments/search/` + term)  
-	  .then(response => {
-	  	this.tournaments = response.data['data'];
-	  	return this.tournaments;
-	  })
-	  .catch(e => {
-	  	console.log(e)
-	  })	
+	  return axios.get(`https://tfind-back.herokuapp.com/api/tournaments/search/` + term)
+	  //return axios.get(`http://localhost:3000/api/tournaments/search/` + term)  
+	    .then(response => {
+	  	  this.tournaments = response.data['data'];
+	  	  return this.tournaments;
+	    })
+	    .catch(e => {
+	  	  console.log(e)
+	    })	
 	}
   
   static createTournament (form) {

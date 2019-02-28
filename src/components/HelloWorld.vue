@@ -12,7 +12,7 @@
         <div class="buttons">
           <div v-if="this.loginStatus == false">
             <login @log="onLog"></login>
-            <router-link class="button is-danger is-inverted" to="/register">Sign Up</router-link>
+            <button class="button is-danger is-inverted" @click = "openModal">Sign Up</button>
           </div>
           <div v-else>
             <logout @out="onLog"></logout>
@@ -21,6 +21,14 @@
       </div>
     </div>  
   </nav>
+
+  <div v-if = "this.registration == true" class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <register></register>
+    </div>
+    <button class="modal-close is-large" aria-label="close" @click = "closeModal"></button>
+  </div>
 
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -46,7 +54,8 @@ export default {
   data () {
     return {
       msg: 'Test your might!',
-      loginStatus: ''
+      loginStatus: '',
+      registration: false
     }
   },
   created(){
@@ -67,6 +76,12 @@ export default {
   methods: {
     onLog(){
       this.loginStatus = store.state.loggedIn
+    },
+    openModal(){
+      this.registration = true;
+    },
+    closeModal(){
+      this.registration = false;
     }
   }
 }

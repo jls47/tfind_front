@@ -22,7 +22,6 @@ export default{
   	  centerlat: 47.6062,
   	  centerlong: -122.3321,
   	  places: this.locations,
-
   	}
   },
   watch: {
@@ -35,15 +34,10 @@ export default{
     }
   },
   created(){
-    this.geocode();
+
   },
   methods: {
-    geocode(){
-      for(let place in this.locations){
-        let address = this.locations[place].address.replace(/ /g, "+")
-        console.log(address);
-      }
-    }
+    
   }
 }
 

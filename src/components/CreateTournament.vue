@@ -2,16 +2,16 @@
   <div class="tournaments">
   <form @submit.prevent="handleSubmit">
     <label>
-      <input type="text" v-model="form.name"/>
-      <input type="text" v-model="form.region"/>
-      <input type="text" v-model="form.address"/>
-      <input type="text" v-model="form.torg"/>
-      <input type="text" v-model="form.size"/>
-      <input type="text" v-model="form.entrycond"/>
-      <input type="text" v-model="form.games"/>
-      <input type="text" v-model="form.series"/>
+      <input class="input" type="text" v-model="form.name"/><br>
+      <input class="input" type="text" v-model="form.region"/><br>
+      <input class="input" type="text" v-model="form.address"/><br>
+      <input class="input" type="text" v-model="form.torg"/><br>
+      <input class="input" type="text" v-model="form.size"/><br>
+      <input class="input" type="text" v-model="form.entrycond"/><br>
+      <input class="input" type="text" v-model="form.games"/><br>
+      <input class="input" type="text" v-model="form.series"/><br>
     </label>
-    <button type="submit">Create</button>
+    <button class = "button is-danger" type="submit">Create</button>
   </form>
     <ul v-if="form.name.length > 0">
       <p>Does this look right?</p>
