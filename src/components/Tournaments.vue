@@ -12,11 +12,12 @@
     <p v-if="search.string">Searching for "{{search.string}}"</p>
   </form>
   
-    <ul v-if="tournaments.length > 0">
-      <button v-if="redoMapSearch == true" class="button is-danger" @click="newBoundSearch">Update results</button>
-      <gmap :tourneys="tournaments" @moved="offerUpdateSearch"></gmap>
-      <li v-for="tourney of tournaments">
+    <ul v-if="tournaments.length > 0" class="results">
+      <button v-if="redoMapSearch == true" class="map button is-danger" @click="newBoundSearch">Update results</button><br><br>
+      <gmap :tourneys="tournaments" @moved="offerUpdateSearch" class="map"></gmap>
+      <li v-for="tourney of tournaments" class="entry">
       	<p><strong>{{tourney.name}}</strong></p>
+        <p>{{tourney.address}}</p>
         <router-link :to="{ name: 'singleT', params: {id: tourney.id}}">See details</router-link>
       </li>
     </ul>
@@ -98,6 +99,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .entry{
+    margin-bottom: 2%;
+  }
 	li{
 		list-style-type: none;
 	}
@@ -107,5 +111,13 @@ export default {
   }
   .control{
     text-align: center;
+  }
+  .map{
+    float: right;
+  }
+  .results{
+    width: 80%;
+    margin-left: 0%;
+    margin-right: 10%;
   }
 </style>

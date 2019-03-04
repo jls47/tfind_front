@@ -54,7 +54,7 @@ export default {
   data () {
     return {
       msg: 'Test your might!',
-      loginStatus: '',
+      loginStatus: this.$store.getters.loginStatus,
       registration: false
     }
   },

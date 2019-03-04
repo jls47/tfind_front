@@ -2,6 +2,8 @@
   <div class="tournaments">
   <form @submit.prevent="handleSubmit">
     <label>
+    <div class="field">
+          <div class="control">
       <input class="input" type="text" v-model="form.name"/><br>
       <input class="input" type="text" v-model="form.region"/><br>
       <input class="input" type="text" v-model="form.address"/><br>
@@ -10,6 +12,7 @@
       <input class="input" type="text" v-model="form.entrycond"/><br>
       <input class="input" type="text" v-model="form.games"/><br>
       <input class="input" type="text" v-model="form.series"/><br>
+      </div></div>
     </label>
     <button class = "button is-danger" type="submit">Create</button>
   </form>
