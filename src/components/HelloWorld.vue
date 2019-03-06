@@ -10,6 +10,13 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
+          <div v-if="this.loginStatus == true && this.TOstatus == true">
+            <router-link tag="a" to="/create"><button class="button is-danger is-inverted">Create Tournament</button></router-link>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
           <div v-if="this.loginStatus == false">
             <login @log="onLog"></login>
             <button class="button is-danger is-inverted" @click = "openModal">Sign Up</button>
@@ -55,7 +62,8 @@ export default {
     return {
       msg: 'Test your might!',
       loginStatus: this.$store.getters.loginStatus,
-      registration: false
+      registration: false,
+      TOstatus: this.$store.getters.loginDetails.TO
     }
   },
   created(){

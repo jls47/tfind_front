@@ -29,7 +29,12 @@ const store = new Vuex.Store({
 	//}
 	state: {
 		status: "search",
-		loggedIn: false
+		loggedIn: false,
+		loginDetails: {
+			user: "none",
+			id: 0,
+			TO: false
+		}
 	},
 	mutations: {
 		SET_USE_CONTEXT(state, context){
@@ -38,6 +43,12 @@ const store = new Vuex.Store({
 		SET_LOGIN_STATUS(state, status){
 			state.loggedIn = status
 		},
+		SET_LOGIN_DETAILS(state, details){
+			console.log(details);
+			state.loginDetails.user = details.name;
+			state.loginDetails.id = details.id;
+			state.loginDetails.TO = details.torg;
+		}
 
 	},
 	actions: {
@@ -50,8 +61,10 @@ const store = new Vuex.Store({
 		createTournament(context){
 			context.commit('SET_USE_CONTEXT', 'createTournament')
 		},
-		login(context){
-			context.commit('SET_LOGIN_STATUS', true)
+		login(context, details){
+			console.log(context);
+			context.commit('SET_LOGIN_DETAILS', details)
+			context.commit('SET_LOGIN_STATUS', true);
 		},
 		logout(context){
 			context.commit('SET_LOGIN_STATUS', false)
@@ -63,6 +76,9 @@ const store = new Vuex.Store({
 		},
 		loginStatus(state){
 			return state.loginStatus;
+		},
+		loginDetails(state){
+			return state.loginDetails;
 		}
 	}
 })

@@ -50,8 +50,8 @@ export default {
             if(data){
               console.log(data);
               if(data.data.status == 'success'){
-                this.login();
-                this.$emit('log')
+                this.login(data.data.user[0]);
+                this.$emit('log');
               }else{
                 this.error = true;
               }

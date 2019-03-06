@@ -22,7 +22,7 @@ export default new Router({
       component: Tournaments
     },
     {
-      path: '/createt',
+      path: '/create',
       name: 'createTournament',
       component: CreateTournament
     },

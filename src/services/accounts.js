@@ -30,7 +30,7 @@ class accounts{
 
   static login (form){
     console.log(form.name);
-    return axios.get(`https://tfind-back.herokuapp.com/api/users`, {
+    return axios.get(`https://tfind-back.herokuapp.com/login`, {
       params: {
         name: form.name,
         password: form.password
@@ -40,7 +40,7 @@ class accounts{
       //params: {
         //name: form.name,
         //password: form.password
-    //  }
+      //}
     //})
       .then(response => {
         console.log(response);
