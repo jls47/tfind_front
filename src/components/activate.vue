@@ -1,10 +1,10 @@
 <template>
   <div class="tournaments">
     <div v-if="status == 'OK'" class="success">
-      Now you can login!  Click <a href="https://jlukes.com/tfind_front">here</a> to go to the main page.
+      Now you can login!  Click <a href="https://www.jlukes.com/tfind_front">here</a> to go to the main page.
     </div>
     <div v-else class="failure">
-      Oops, something went wrong.  Click <a href="https://jlukes.com/tfind_front">here</a> to go to the main page or try again.
+      Oops, something went wrong.  Click <a href="https://www.jlukes.com/tfind_front">here</a> to go to the main page or try again.
     </div>
   </div>
 </template>

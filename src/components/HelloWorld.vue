@@ -37,7 +37,7 @@
     <button class="modal-close is-large" aria-label="close" @click = "closeModal"></button>
   </div>
 
-  <div class="hello">
+  <div class="hello container">
     <h1>{{ msg }}</h1>
     <div v-if="">
       <tourneys></tourneys>

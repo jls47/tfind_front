@@ -1,6 +1,6 @@
 <template>
-  <div class="tournaments">
-  <form @submit.prevent="handleSubmit">
+  <div class="tournaments container">
+  <form @submit.prevent="handleSubmit" class="searchBar">
     <label>
       <div class="field">
         <div class="control">
@@ -11,16 +11,18 @@
     
     <p v-if="search.string">Searching for "{{search.string}}"</p>
   </form>
-  
-    <ul v-if="tournaments.length > 0" class="results">
+    <div>
+    <ul v-if="tournaments.length > 0" class="results1 columns">
       <button v-if="redoMapSearch == true" class="map button is-danger" @click="newBoundSearch">Update results</button><br><br>
-      <gmap :tourneys="tournaments" @moved="offerUpdateSearch" class="map"></gmap>
-      <li v-for="tourney of tournaments" class="entry">
+      
+      <li v-for="tourney of tournaments" class="entry1 column">
       	<p><strong>{{tourney.name}}</strong></p>
         <p>{{tourney.address}}</p>
         <router-link :to="{ name: 'singleT', params: {id: tourney.id}}">See details</router-link>
       </li>
+      <gmap :tourneys="tournaments" @moved="offerUpdateSearch" class="column is-half"></gmap>
     </ul>
+    </div>
   </div>
 </template>
 
@@ -99,25 +101,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .entry{
+  .searchBar{
     margin-bottom: 2%;
-  }
-	li{
-		list-style-type: none;
-	}
-  #tSearch{
-    width: 60%;
-    margin-left: 0%;
-  }
-  .control{
-    text-align: center;
-  }
-  .map{
-    float: right;
-  }
-  .results{
-    width: 80%;
-    margin-left: 0%;
-    margin-right: 10%;
   }
 </style>

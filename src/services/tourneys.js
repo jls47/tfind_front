@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 class tourneys {
-  static getAllTournaments () {
+  static getAllTournaments() {
   	return axios.get(`https://tfind-back.herokuapp.com/api/tournaments`)
   	//return axios.get(`http://localhost:3000/api/tournaments`)
   	  .then(response => {
