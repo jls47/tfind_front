@@ -44,16 +44,44 @@ export default {
         email: ''
       },
       password2: '',
-      submitted: false
+      submitted: false,
+      hasErrors: false,
+      errors: {
+        name: '',
+        password: '',
+        email: ''
+      }
     }
   },
   methods: {
     handleSubmit(){
       console.log(this.user);
-  	  if(this.user){
+  	  if(this.checkForm() == true){
         accounts.createAccount(this.user)
         this.submitted = true;
       }
+    },
+    checkForm(){
+      this.errors = {};
+      if(!this.user.name){
+        this.errors.username = 'Username needed!';
+      }
+      if(!this.user.password || this.user.password != this.password2){
+        this.errors.password = 'Problems with the password!';
+      }
+      if(!this.user.email || !this.validEmail(this.user.email)){
+        this.errors.email = 'Needs a valid email!';
+      }
+
+      if(!this.errors.length){
+        return true;
+      }else{
+        this.hasErrors = true;
+      }
+    },
+    validEmail(email){
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     }
   }
 

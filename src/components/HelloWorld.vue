@@ -44,12 +44,14 @@
     </div>
   </div>
 
+  <cookieNotifier></cookieNotifier>
+
 </div>
 </template>
 
 <script>
-import { serverBus } from '../main';
 import Tournaments from '@/components/Tournaments';
+import cookieNotifier from '@/components/cookieNotifier';
 import register from '@/components/register';
 import login from '@/components/login';
 import logout from '@/components/logout';
@@ -67,15 +69,14 @@ export default {
     }
   },
   created(){
-    serverBus.$on('clicked', (msg) => {
-      this.msg = msg;
-    });
+    
   },
   components:{
     tourneys: Tournaments,
     register: register,
     login: login,
-    logout: logout
+    logout: logout,
+    cookieNotifier: cookieNotifier
   },
   mounted(){
     console.log(store.state)
@@ -90,6 +91,16 @@ export default {
     },
     closeModal(){
       this.registration = false;
+    }
+  },
+  computed: {
+    TO(){
+      this.TOstatus = this.$store.getters.loginDetails.TO;
+    }
+  },
+  watch: {
+    TO(){
+      return this.TOstatus;
     }
   }
 }
