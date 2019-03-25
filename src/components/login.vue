@@ -28,8 +28,8 @@
 <script>
 import axios from 'axios';
 import accounts from '@/services/accounts';
-import store from '../main.js'
-import { mapActions } from 'vuex'
+import store from '../main.js';
+import { mapActions } from 'vuex';
 export default {
   name: 'login',
   data () {
@@ -50,6 +50,9 @@ export default {
             if(data){
               console.log(data);
               if(data.data.status == 'success'){
+                if(localStorage.getItem("cookiesGood") == "true"){
+                  localStorage.setItem("userDetails", JSON.stringify({name: data.data.user[0].name, id: data.data.user[0].id, torg: data.data.user[0].torg}));
+                }
                 this.login(data.data.user[0]);
                 this.$emit('log');
               }else{

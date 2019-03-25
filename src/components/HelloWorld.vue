@@ -44,8 +44,9 @@
     </div>
   </div>
 
-  <cookieNotifier></cookieNotifier>
-
+  <div v-if="cookieStatus == null">
+    <cookieNotifier></cookieNotifier>
+  </div>
 </div>
 </template>
 
@@ -56,6 +57,7 @@ import register from '@/components/register';
 import login from '@/components/login';
 import logout from '@/components/logout';
 import store from '../main.js';
+import { mapActions } from 'vuex';
 
       
 export default {
@@ -65,11 +67,9 @@ export default {
       msg: 'Test your might!',
       loginStatus: this.$store.getters.loginStatus,
       registration: false,
-      TOstatus: this.$store.getters.loginDetails.TO
+      TOstatus: this.$store.getters.loginDetails.TO,
+      cookieStatus: localStorage.getItem("cookiesGood")
     }
-  },
-  created(){
-    
   },
   components:{
     tourneys: Tournaments,
@@ -77,6 +77,9 @@ export default {
     login: login,
     logout: logout,
     cookieNotifier: cookieNotifier
+  },
+  beforeMount(){
+    this.checkCookies();
   },
   mounted(){
     console.log(store.state)
@@ -91,7 +94,17 @@ export default {
     },
     closeModal(){
       this.registration = false;
-    }
+    },
+    checkCookies(){
+      if(localStorage.getItem("userDetails") != null){
+        
+        this.login(JSON.parse(localStorage.getItem("userDetails")));
+      }
+    },
+    //needs details.id, .name, .to; maybe at some point region for automatic result gathering on front page?
+    ...mapActions([
+      'login'
+    ])
   },
   computed: {
     TO(){

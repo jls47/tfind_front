@@ -7,8 +7,8 @@
 				<button class="delete" aria-label="delete"></button>
 			</div>
 			<div class="message-body">
-				<p>This site has some extended functionality with cookies.  Not needing to re-login upon refresh, etc.  Do you accept the use of cookies on this site?</p>
-				<button class = "button is-danger" type="submit">Yes</button> <button class = "button is-danger" type="submit">No</button>
+				<p>Accept cookies?</p>
+				<button class = "button is-danger" type="submit" v-on:click="yesStorage()"">Yes</button> <button class = "button is-danger" type="submit" v-on:click="noStorage()">No</button>
 			</div>	
 		</article>
 	</div>
@@ -24,6 +24,14 @@ export default {
 		return {
 
 		}
+	},
+	methods: {
+		yesStorage(){
+			localStorage.setItem("cookiesGood", true);
+		},
+		noStorage(){
+			localStorage.setItem("cookiesGood", false)
+		}
 	}
 }
 
@@ -31,7 +39,10 @@ export default {
 
 <style lang="scss">
 	.cookies{
-		width: 35vw;
+		@media screen and(max-width: 800px){
+			width: 100%;
+		}
+		
 		position: fixed;
 		bottom: 5px;
 		right: 5px;
