@@ -18,7 +18,7 @@
       <div class="navbar-item">
         <div class="buttons">
           <div v-if="this.loginStatus == false">
-            <login @log="onLog"></login>
+            <login @log="onLog" @inactive="inactive"></login>
             <button class="button is-danger is-inverted" @click = "openModal">Sign Up</button>
           </div>
           <div v-else>
@@ -100,6 +100,9 @@ export default {
         
         this.login(JSON.parse(localStorage.getItem("userDetails")));
       }
+    },
+    inactive(){
+      alert("You still haven't activated your account!  Check your email for the verification message and click the link.");
     },
     //needs details.id, .name, .to; maybe at some point region for automatic result gathering on front page?
     ...mapActions([

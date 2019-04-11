@@ -53,8 +53,12 @@ export default {
                 if(localStorage.getItem("cookiesGood") == "true"){
                   localStorage.setItem("userDetails", JSON.stringify({name: data.data.user[0].name, id: data.data.user[0].id, torg: data.data.user[0].torg}));
                 }
-                this.login(data.data.user[0]);
-                this.$emit('log');
+                if(data.data.user[0].active == false){
+                  this.$emit('inactive');
+                }else{
+                  this.login(data.data.user[0]);
+                  this.$emit('log');
+                }
               }else{
                 this.error = true;
               }

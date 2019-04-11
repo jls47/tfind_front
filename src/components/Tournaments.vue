@@ -13,7 +13,6 @@
   </form>
     <div>
     <ul v-if="tournaments.length > 0" class="results1 columns">
-      <button v-if="redoMapSearch == true" class="map button is-danger" @click="newBoundSearch">Update results</button><br><br>
       
       <li v-for="tourney of tournaments" class="entry1 column">
       	<p><strong>{{tourney.name}}</strong></p>
@@ -21,7 +20,10 @@
         <router-link :to="{ name: 'singleT', params: {id: tourney.id}}">See details</router-link>
       </li>
       <gmap :tourneys="tournaments" @moved="offerUpdateSearch" class="column is-half"></gmap>
+      <br>
     </ul>
+
+      <button v-if="redoMapSearch == true" class="map button is-danger" id = "update" @click="newBoundSearch">Update results</button><br><br>
     </div>
   </div>
 </template>
@@ -103,5 +105,9 @@ export default {
 <style lang="scss">
   .searchBar{
     margin-bottom: 2%;
+  }
+
+  #update{
+    margin-left: 90%;
   }
 </style>
