@@ -18,7 +18,12 @@
           <div class="message-body">
             Username or password are incorrect.  Try again!
           </div>
-          </article>
+        </article>
+        <article v-if="this.notActivated == true" class="message is-warning">
+          <div class="message-body">
+            Looks like this account hasn't been activated yet.  Check your email for the verification link!
+          </div>
+        </article>
         </div>
       </div>
     </div>
@@ -35,6 +40,7 @@ export default {
   data () {
     return {
     isActive: false,
+    notActivated: null,
     error: false,
      params: {
         name: '',
@@ -50,14 +56,18 @@ export default {
             if(data){
               console.log(data);
               if(data.data.status == 'success'){
-                if(localStorage.getItem("cookiesGood") == "true"){
-                  localStorage.setItem("userDetails", JSON.stringify({name: data.data.user[0].name, id: data.data.user[0].id, torg: data.data.user[0].torg}));
-                }
-                if(data.data.user[0].active == false){
+                if(data.data.user.active == false){
+                  console.log('nope')
+                  this.notActivated = true;
                   this.$emit('inactive');
                 }else{
+                  this.notActivated = true;
                   this.login(data.data.user[0]);
+                  this.notActivated = false;
                   this.$emit('log');
+                  if(localStorage.getItem("cookiesGood") == "true"){
+                    localStorage.setItem("userDetails", JSON.stringify({name: data.data.user.name, id:   data.data.user.id, torg: data.data.user.torg}));
+                  }
                 }
               }else{
                 this.error = true;

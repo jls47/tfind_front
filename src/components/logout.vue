@@ -17,7 +17,8 @@ export default {
   methods: {
     logOut(){
   	  this.logout();
-      this.$emit('out')
+      this.$emit('out');
+      localStorage.setItem("userDetails", null);
     },
     ...mapActions([
       'logout'
