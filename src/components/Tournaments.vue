@@ -108,6 +108,7 @@ export default {
   }
 
   #update{
-    right: 10%;
+    position: fixed;
+    right: 5%;
   }
 </style>
