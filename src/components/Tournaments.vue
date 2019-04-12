@@ -12,7 +12,7 @@
     <p v-if="search.string">Searching for "{{search.string}}"</p>
   </form>
     <div>
-    <ul v-if="tournaments.length > 0" class="results1 columns">
+    <ol v-if="tournaments.length > 0" class="results1 columns">
       
       <li v-for="tourney of tournaments" class="entry1 column">
       	<p><strong>{{tourney.name}}</strong></p>
@@ -21,7 +21,7 @@
       </li>
       <gmap :tourneys="tournaments" @moved="offerUpdateSearch" class="column is-half"></gmap>
       <br>
-    </ul>
+    </ol>
 
       <button v-if="redoMapSearch == true" class="map button is-danger" id = "update" @click="newBoundSearch">Update results</button><br><br>
     </div>
@@ -108,6 +108,6 @@ export default {
   }
 
   #update{
-    margin-left: 90%;
+    right: 10%;
   }
 </style>
